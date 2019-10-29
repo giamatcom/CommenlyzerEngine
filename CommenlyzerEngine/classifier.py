@@ -23,8 +23,16 @@ logger.info('Classifier path: '+classifier_path)
 logger.info('Vectorizer path: '+vectorized_path)
 logger.debug(os.environ)
 
-Classifier = joblib.load(classifier_path)
-Vectorizer = joblib.load(vectorized_path)
+try:
+    Classifier = joblib.load(classifier_path)
+except (FileExistsError,FileNotFoundError) as e:
+    Classifier = svm.SVC()
+    logger.warning(str(e)+"\tUsing empty classifier.")
+try:
+    Vectorizer = joblib.load(vectorized_path)
+except (FileExistsError,FileNotFoundError) as e:
+    Vectorizer = TfidfVectorizer()
+    logger.warning(str(e)+"\tUsing empty vectorizer.")
 
 
 def roundx(number):
