@@ -12,7 +12,7 @@ clean:
 install:
 	pip install pipenv
 	pipenv install --dev --skip-lock
-	pipenv spacy download es_core_news_md
+	pipenv run python -m spacy download es_core_news_md
 
 test:
 	make lint && pipenv run pytest --doctest-modules --cov=$(PROJECT) --cov-report=xml -v
