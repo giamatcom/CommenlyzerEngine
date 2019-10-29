@@ -17,4 +17,3 @@ sklearn = "*"
 joblib = "*"
 spacy = "*"
 gensim = "*"
-# requests = {file = "https://github.com/explosion/spacy-models/releases/download/es_core_news_md-2.2.0/es_core_news_md-2.2.0.tar.gz", editable = false}
