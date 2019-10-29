@@ -25,12 +25,12 @@ logger.debug(os.environ)
 
 try:
     Classifier = joblib.load(classifier_path)
-except FileNotFoundError as e:
+except (FileExistsError,FileNotFoundError) as e:
     Classifier = svm.SVC()
     logger.warning(str(e)+"\tUsing empty classifier.")
 try:
     Vectorizer = joblib.load(vectorized_path)
-except FileExistsError as e:
+except (FileExistsError,FileNotFoundError) as e:
     Vectorizer = TfidfVectorizer()
     logger.warning(str(e)+"\tUsing empty vectorizer.")
 
